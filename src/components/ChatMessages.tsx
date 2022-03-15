@@ -37,14 +37,9 @@ const ChatMessages = () => {
   );
 };
 
-const styles: {
-  box: React.CSSProperties;
-  imgBox: React.CSSProperties;
-  img: React.CSSProperties;
-  textBox: React.CSSProperties;
-  userName: React.CSSProperties;
-  message: React.CSSProperties;
-} = {
+type styleType = "box" | "imgBox" | "img" | "textBox" | "userName" | "message";
+
+const styles = {
   box: {
     width: "90%",
     height: "7%",
@@ -81,6 +76,6 @@ const styles: {
     display: "flex",
     textAlign: "start",
   },
-};
+} as Record<styleType, React.CSSProperties>;
 
 export default ChatMessages;
