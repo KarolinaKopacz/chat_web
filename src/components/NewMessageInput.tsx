@@ -21,7 +21,7 @@ const NewMessageInput = (props: Props) => {
 
   return (
     <>
-      <InputGroup>
+      <InputGroup style={styles.inputGrup}>
         <FormControl
           aria-label="Default"
           type="text"
@@ -40,6 +40,13 @@ const NewMessageInput = (props: Props) => {
       </InputGroup>
     </>
   );
+};
+
+const styles = {
+  inputGrup: {
+    width: "100%",
+    height: "40px",
+  },
 };
 
 export default NewMessageInput;
