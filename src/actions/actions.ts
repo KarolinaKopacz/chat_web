@@ -4,6 +4,7 @@ export const getData = () => {
     headers: {
       "Content-Type": "application/json",
     },
+    // add types
   }).then(async (response) => {
     if (response.ok) {
       const data = await response.json();

@@ -6,7 +6,7 @@ import { Card } from "react-bootstrap";
 import { getData } from "../actions/actions";
 import { Data } from "./types";
 
-const UsersMessages = () => {
+const ChatMessages = () => {
   const [data, setData] = useState<Data[]>();
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const UsersMessages = () => {
               <>
                 <Card
                   border="primary"
+                  // use className instead of line styles
                   style={{ width: "50%", height: "200px", margin: "auto" }}
                 >
                   <Card.Img
@@ -45,4 +46,4 @@ const UsersMessages = () => {
   );
 };
 
-export default UsersMessages;
+export default ChatMessages;

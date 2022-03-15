@@ -1,11 +1,11 @@
 import React from "react";
-import UsersMessages from "../components/UsersMessages";
+import ChatMessages from "../components/ChatMessages";
 
 const ChatScreen = () => {
   return (
     <>
       <div>Strona czatu</div>
-      <UsersMessages />
+      <ChatMessages />
     </>
   );
 };
