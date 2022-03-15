@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Button, FormControl, InputGroup, Spinner } from "react-bootstrap";
 
 interface Props {
-  isLoading: boolean;
   buttonText: string;
 }
 
-const NewMessageInput = (props: Props) => {
-  const { isLoading, buttonText } = props;
+const ChatTextInput = (props: Props) => {
+  const { buttonText } = props;
+  const [isLoading, setLoadingVisible] = useState<boolean>(false);
   const [userMessage, setUserMessage] = useState<string>();
 
   const handleSendMessage = () => {
@@ -49,4 +49,4 @@ const styles = {
   },
 };
 
-export default NewMessageInput;
+export default ChatTextInput;
