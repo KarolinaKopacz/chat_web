@@ -4,11 +4,11 @@ import ChatMessages from "../components/ChatMessages";
 const ChatScreen = () => {
   return (
     <div style={styles.chatWindow}>
-      <div>Strona czatu</div>
       <ChatMessages />
     </div>
   );
 };
+type styleType = "chatWindow";
 
 const styles = {
   chatWindow: {
@@ -18,7 +18,8 @@ const styles = {
     height: "80%",
     border: "1px solid rgb(122, 167, 240) ",
     borderRadius: "10px",
+    overflowY: "auto",
   },
-};
+} as Record<styleType, React.CSSProperties>;
 
 export default ChatScreen;

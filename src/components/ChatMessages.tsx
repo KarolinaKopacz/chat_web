@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { reverse } from "dns/promises";
+import React, { useEffect, useRef, useState } from "react";
 
 import { getData } from "../actions/actions";
+import { useScrollToBottom } from "../hooks/useScrollToBottom";
 import { Data } from "./types";
 
 const ChatMessages = () => {
   const [data, setData] = useState<Data[]>();
+  const messagesEndRef = React.createRef<HTMLDivElement>();
 
   useEffect(() => {
     getData().then((response) => {
       setData(response);
     });
-  }, []);
+  });
+
+  useScrollToBottom({ element: messagesEndRef });
 
   return (
     <>
@@ -33,6 +38,7 @@ const ChatMessages = () => {
             );
           })
         : null}
+      <div ref={messagesEndRef}></div>
     </>
   );
 };
