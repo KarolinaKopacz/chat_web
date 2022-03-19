@@ -1,11 +1,13 @@
 import React from "react";
 import ChatMessages from "../components/ChatMessages";
+import ChatTextInput from "../components/ChatTextInput";
 
 const ChatScreen = () => {
   return (
     <div style={styles.chatWindow}>
       <div>Strona czatu</div>
       <ChatMessages />
+      <ChatTextInput buttonText="Send!" />
     </div>
   );
 };
