@@ -57,7 +57,6 @@ type styleType = "box" | "imgBox" | "img" | "textBox" | "userName" | "message";
 const styles = {
   box: {
     width: "90%",
-    height: "7%",
     padding: "10px 0",
     margin: "10px auto",
     display: "flex",
