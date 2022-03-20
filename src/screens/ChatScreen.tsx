@@ -6,7 +6,6 @@ const ChatScreen = () => {
   return (
     <div style={styles.chatWindow}>
       <ChatMessages />
-      <ChatTextInput buttonText="Send!" />
     </div>
   );
 };

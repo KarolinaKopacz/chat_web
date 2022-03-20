@@ -1,26 +1,34 @@
-import { reverse } from "dns/promises";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { getData } from "../actions/actions";
 import { useScrollToBottom } from "../hooks/useScrollToBottom";
-import { Data } from "./types";
+import ChatTextInput from "./ChatTextInput";
+import { Data, Message } from "./types";
 
 const ChatMessages = () => {
   const [data, setData] = useState<Data[]>();
+  const [renderData, setRenderData] = useState(0);
   const messagesEndRef = React.createRef<HTMLDivElement>();
 
   useEffect(() => {
     getData().then((response) => {
       setData(response);
     });
-  });
+  }, []);
 
   useScrollToBottom({ element: messagesEndRef });
+
+  const handleSaveMessage = (message: Message) => {
+    data?.push({ message: message.messageText });
+
+    setRenderData(renderData + 1);
+    setData(data);
+  };
 
   return (
     <>
       {data
-        ? data.map((user) => {
+        ? data?.map((user) => {
             return (
               <div style={styles.box}>
                 <div style={styles.imgBox}>
@@ -38,6 +46,7 @@ const ChatMessages = () => {
             );
           })
         : null}
+      <ChatTextInput buttonText="Send!" onSavePress={handleSaveMessage} />
       <div ref={messagesEndRef}></div>
     </>
   );
