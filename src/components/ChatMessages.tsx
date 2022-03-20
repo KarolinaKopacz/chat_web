@@ -16,7 +16,7 @@ const ChatMessages = () => {
     });
   }, []);
 
-  useScrollToBottom({ element: messagesEndRef });
+  useScrollToBottom({ element: messagesEndRef, action: renderData });
 
   const handleSaveMessage = (message: Message) => {
     data?.push({ message: message.messageText });
