@@ -1,25 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useMessages } from "../contexts/Messages";
+import ChatMessagesDataService from "../services/chatMessages.service";
 import { useScrollToBottom } from "../hooks/useScrollToBottom";
+import firebase from "../firebase/firebase.config";
 import ChatTextInput from "./ChatTextInput";
-import { Message } from "./types";
+import { Data, Message } from "./types";
 
 const ChatMessages = () => {
-  const [renderData, setRenderData] = useState(0);
   const messagesEndRef = React.createRef<HTMLDivElement>();
-  const { sendMessage, messages } = useMessages();
+  const [chatMessages, setChatMessages] = useState<Data[]>([]);
+  const query = firebase.db.collection("chatMessages").orderBy("createdAt");
 
-  useScrollToBottom({ element: messagesEndRef, action: renderData });
+  useScrollToBottom({ element: messagesEndRef, action: chatMessages });
+
+  useEffect(() => {
+    ChatMessagesDataService.getAll().then((data: Data[]) => {
+      setChatMessages((prev) => [...prev, ...data]);
+    });
+  }, []);
+
+  useEffect(() => {
+    const unsubscriber = query.onSnapshot((querySnapshot) => {
+      const data = querySnapshot.docs.map((doc) => {
+        return {
+          ...doc.data(),
+        };
+      });
+      setChatMessages(data);
+    });
+
+    return unsubscriber;
+  }, []);
 
   const handleSaveMessage = (message: Message) => {
-    setRenderData(renderData + 1);
-    sendMessage(message.messageText);
+    ChatMessagesDataService.create({
+      createdAt: new Date(),
+      first_name: "xx",
+      last_name: "xxx",
+      avatar: "https://robohash.org/facereautofficiis.png?size=50x50&set=set1",
+      message: message.messageText,
+    });
+    setChatMessages([...chatMessages, { message: message.messageText }]);
   };
 
   return (
     <>
-      {messages?.map((user) => {
+      {chatMessages?.map((user) => {
         return (
           <div style={styles.box}>
             <div style={styles.imgBox}>

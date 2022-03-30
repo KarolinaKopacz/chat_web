@@ -3,7 +3,8 @@ export type Data = {
   first_name?: string;
   last_name?: string;
   avatar?: string;
-  message: string;
+  message?: string;
+  createdAt?: Date;
 };
 
 export type Message = {
