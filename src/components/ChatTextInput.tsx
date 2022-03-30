@@ -14,6 +14,7 @@ const ChatTextInput = (props: Props) => {
   const [userMessage, setUserMessage] = useState<string>();
 
   const handleSendMessage = () => {
+    setLoadingVisible(true);
     if (!userMessage) {
       return;
     }
@@ -21,6 +22,7 @@ const ChatTextInput = (props: Props) => {
     onSavePress({ messageText: userMessage });
 
     setUserMessage("");
+    setLoadingVisible(false);
   };
 
   return (
