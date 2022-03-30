@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Button, FormControl, InputGroup, Spinner } from "react-bootstrap";
+import { Message } from "./types";
 
 interface Props {
   buttonText: string;
+  onSavePress: (message: Message) => void;
 }
 
 const ChatTextInput = (props: Props) => {
-  const { buttonText } = props;
+  const { buttonText, onSavePress } = props;
   const [isLoading, setLoadingVisible] = useState<boolean>(false);
   const [userMessage, setUserMessage] = useState<string>();
 
@@ -14,7 +16,8 @@ const ChatTextInput = (props: Props) => {
     if (!userMessage) {
       return;
     }
-    //action...
+
+    onSavePress({ messageText: userMessage });
 
     setUserMessage("");
   };

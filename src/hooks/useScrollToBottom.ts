@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 
 interface Props {
-  // action: object | [];
+  action: any;
   element: React.RefObject<HTMLDivElement>;
 }
 
 export const useScrollToBottom = (props: Props) => {
-  const { element } = props;
+  const { element, action } = props;
 
   useEffect(() => {
     element.current?.scrollIntoView({
@@ -14,6 +14,5 @@ export const useScrollToBottom = (props: Props) => {
       block: "end",
       inline: "nearest",
     });
-    //for now scroll once, later on some actions like add new messages
-  });
+  }, [action]);
 };

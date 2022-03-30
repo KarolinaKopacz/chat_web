@@ -7,14 +7,17 @@ import ChatScreen from "./screens/ChatScreen";
 import HomeScreen from "./screens/HomeScreen";
 
 import "./App.css";
+import { MessagesProvider } from "./contexts/Messages";
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<HomeScreen />}></Route>
-        <Route path="/chat" element={<ChatScreen />}></Route>
-      </Routes>
+      <MessagesProvider>
+        <Routes>
+          <Route path="/" element={<HomeScreen />}></Route>
+          <Route path="/chat" element={<ChatScreen />}></Route>
+        </Routes>
+      </MessagesProvider>
     </div>
   );
 }

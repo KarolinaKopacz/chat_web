@@ -1,12 +1,10 @@
 import React from "react";
 import ChatMessages from "../components/ChatMessages";
-import ChatTextInput from "../components/ChatTextInput";
 
 const ChatScreen = () => {
   return (
     <div style={styles.chatWindow}>
       <ChatMessages />
-      <ChatTextInput buttonText="Send!" />
     </div>
   );
 };
