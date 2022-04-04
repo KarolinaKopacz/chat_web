@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import ChatMessagesDataService from "../services/chatMessages.service";
-import { useScrollToBottom } from "../hooks/useScrollToBottom";
 import firebase from "../firebase/firebase.config";
 import ChatTextInput from "./ChatTextInput";
-import { Data, Message } from "./types";
 import MessageBubble from "./MessageBubble";
+import { Data, Message } from "./types";
 
 const ChatMessages = () => {
-  const messagesEndRef = React.createRef<HTMLDivElement>();
   const [chatMessages, setChatMessages] = useState<Data[]>([]);
-
-  useScrollToBottom({ element: messagesEndRef, action: chatMessages });
 
   useEffect(() => {
     const unsubscriber = firebase.db
@@ -42,13 +38,23 @@ const ChatMessages = () => {
 
   return (
     <>
-      {chatMessages?.map((message) => {
-        return <MessageBubble message={message} />;
-      })}
+      <div style={styles.box}>
+        {chatMessages?.map((message) => {
+          return <MessageBubble message={message} />;
+        })}
+      </div>
       <ChatTextInput buttonText="Send!" onSavePress={handleSaveMessage} />
-      <div ref={messagesEndRef}></div>
     </>
   );
 };
+
+type styleType = "box";
+
+const styles = {
+  box: {
+    overflowY: "auto",
+    height: "90%",
+  },
+} as Record<styleType, React.CSSProperties>;
 
 export default ChatMessages;

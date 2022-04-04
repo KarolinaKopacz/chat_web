@@ -1,11 +1,17 @@
 import React from "react";
+
+import { useScrollToBottom } from "../hooks/useScrollToBottom";
 import { Data } from "./types";
 
 interface Props {
   message: Data;
 }
+
 const MessageBubble = (props: Props) => {
   const { message } = props;
+  const messagesEndRef = React.createRef<HTMLDivElement>();
+
+  useScrollToBottom({ element: messagesEndRef, action: message });
 
   return (
     <div style={styles.box} key={message.id}>
@@ -20,6 +26,7 @@ const MessageBubble = (props: Props) => {
         </div>
         <div style={styles.message}>{message.message}</div>
       </div>
+      <div ref={messagesEndRef}></div>
     </div>
   );
 };

@@ -18,7 +18,6 @@ const styles = {
     height: "80%",
     border: "1px solid rgb(122, 167, 240) ",
     borderRadius: "10px",
-    overflowY: "auto",
   },
 } as Record<styleType, React.CSSProperties>;
 
