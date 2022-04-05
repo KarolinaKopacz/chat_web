@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 
 import ChatMessagesDataService from "../services/chatMessages.service";
-import firebase from "../firebase/firebase.config";
+import firebaseConfig from "../firebase/firebase.config";
 import ChatTextInput from "./ChatTextInput";
 import MessageBubble from "./MessageBubble";
 import { Data, Message } from "./types";
 
+import { useAuth } from "../hooks/useAuth";
+
 const ChatMessages = () => {
   const [chatMessages, setChatMessages] = useState<Data[]>([]);
+  const user = useAuth();
+  //use user.uid
 
   useEffect(() => {
-    const unsubscriber = firebase.db
+    const unsubscriber = firebaseConfig.db
       .collection("chatMessages")
       .orderBy("createdAt")
       .onSnapshot((querySnapshot) => {
