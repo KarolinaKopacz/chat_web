@@ -11,7 +11,6 @@ import { useAuth } from "../hooks/useAuth";
 const ChatMessages = () => {
   const [chatMessages, setChatMessages] = useState<Data[]>([]);
   const user = useAuth();
-  //use user.uid
 
   useEffect(() => {
     const unsubscriber = firebaseConfig.db
@@ -31,6 +30,7 @@ const ChatMessages = () => {
 
   const handleSaveMessage = (message: Message) => {
     ChatMessagesDataService.create({
+      user_id: user?.uid,
       createdAt: new Date(),
       first_name: "xx",
       last_name: "xxx",
@@ -44,7 +44,7 @@ const ChatMessages = () => {
     <>
       <div style={styles.box}>
         {chatMessages?.map((message) => {
-          return <MessageBubble message={message} />;
+          return <MessageBubble message={message} loggedUserId={user?.uid} />;
         })}
       </div>
       <ChatTextInput buttonText="Send!" onSavePress={handleSaveMessage} />

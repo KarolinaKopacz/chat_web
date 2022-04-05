@@ -23,6 +23,7 @@ const ChatMessagesDataService = {
   },
 
   create: async ({
+    user_id,
     first_name,
     last_name,
     avatar,
@@ -31,6 +32,7 @@ const ChatMessagesDataService = {
   }: Data) => {
     chatMessagesFirebase
       .add({
+        user_id: user_id,
         createdAt: createdAt,
         first_name: first_name,
         last_name: last_name,
