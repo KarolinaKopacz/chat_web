@@ -14,6 +14,7 @@ const ChatTextInput = (props: Props) => {
   const [userMessage, setUserMessage] = useState<string>();
 
   const handleSendMessage = () => {
+    setLoadingVisible(true);
     if (!userMessage) {
       return;
     }
@@ -21,11 +22,12 @@ const ChatTextInput = (props: Props) => {
     onSavePress({ messageText: userMessage });
 
     setUserMessage("");
+    setLoadingVisible(false);
   };
 
   return (
     <>
-      <InputGroup style={styles.inputGrup}>
+      <InputGroup style={styles.inputGroup}>
         <FormControl
           aria-label="Default"
           type="text"
@@ -46,11 +48,13 @@ const ChatTextInput = (props: Props) => {
   );
 };
 
+type styleType = "inputGroup";
+
 const styles = {
-  inputGrup: {
+  inputGroup: {
     width: "100%",
-    height: "40px",
+    height: "10%",
   },
-};
+} as Record<styleType, React.CSSProperties>;
 
 export default ChatTextInput;
