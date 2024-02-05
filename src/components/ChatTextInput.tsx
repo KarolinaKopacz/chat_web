@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Button, FormControl, InputGroup, Spinner } from "react-bootstrap";
+import React, { useState } from 'react';
+import { Button, FormControl, InputGroup, Spinner } from 'react-bootstrap';
 
-import { Message } from "./types";
+import { Message } from './types';
 
 interface Props {
   buttonText: string;
@@ -21,7 +21,7 @@ const ChatTextInput = (props: Props) => {
 
     onSavePress({ messageText: userMessage });
 
-    setUserMessage("");
+    setUserMessage('');
     setLoadingVisible(false);
   };
 
@@ -31,7 +31,7 @@ const ChatTextInput = (props: Props) => {
         <FormControl
           aria-label="Default"
           type="text"
-          value={userMessage}
+          value={userMessage || ''}
           onChange={(ev) => setUserMessage(ev.target.value)}
         />
         {isLoading ? (
@@ -48,12 +48,12 @@ const ChatTextInput = (props: Props) => {
   );
 };
 
-type styleType = "inputGroup";
+type styleType = 'inputGroup';
 
 const styles = {
   inputGroup: {
-    width: "100%",
-    height: "10%",
+    width: '100%',
+    height: '10%',
   },
 } as Record<styleType, React.CSSProperties>;
 

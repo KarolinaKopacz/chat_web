@@ -1,12 +1,11 @@
-## Available Scripts
+## Chat web
 
-In the project directory, you can run:
+This is an example of small chat application.
 
-### `Instalation`
+### Runs the app in the development mode
 
-npm intall
+`npm install`
 
-### `npm start`
+`npm start`
 
-Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
